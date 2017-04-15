@@ -1,3 +1,28 @@
+.recentPosts {
+  float: right;
+  width: 200px;
+  background: #CCC;
+  padding: 15px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.recentPosts h2 {
+  margin: 5px 0px 15px 0px;
+}
+
+.recentPosts a {
+  display: block;
+  margin: 5px 0px;
+  text-decoration: none;
+}
+
+.recentPosts:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 body>header {
 	background: #eee;
 	padding: 5px;
@@ -25,3 +50,4 @@ body>footer {
 	display: inline-block;
 	margin-right: 10px;
 }
+
