@@ -24,13 +24,15 @@ public class LoginController
 
     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     public String loginPage(@Valid LoginForm loginForm, BindingResult bindingResult) {
+    	System.out.println("Recieved login post");
         if (bindingResult.hasErrors()) {
              notifyService.addErrorMessage("Please fill the form correctly!");
              return "users/login";
         }
 
-        if (!userService.authenticate(
+        if (!userService.authenticate(        	
              loginForm.getUsername(), loginForm.getPassword())) {
+        	System.out.println("Invalid login");
              notifyService.addErrorMessage("Invalid login!");
              return "users/login";
         }
@@ -41,6 +43,7 @@ public class LoginController
     
     @RequestMapping(value = "/users/login", method = RequestMethod.GET)
     public String login(LoginForm loginForm) {
+    	System.out.println("Recieved login get");
         return "users/login";
     }
 }

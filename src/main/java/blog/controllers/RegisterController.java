@@ -16,7 +16,6 @@ import javax.validation.Valid;
 @Controller
 public class RegisterController 
 {
-
     @Autowired
     private UserService userService;
     
@@ -28,11 +27,13 @@ public class RegisterController
 
     @RequestMapping("/users/register")
     public String login(RegisterForm registerForm) {
+    	System.out.println("Recieved register get");
         return "users/register";
     }
 
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
-    public String loginPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
+    public String registerPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
+    	System.out.println("Recieved register post");
         if (bindingResult.hasErrors()) {
              notifyService.addErrorMessage("Please fill the form correctly!");
              return "users/register";
@@ -44,6 +45,7 @@ public class RegisterController
             newUser.setUsername(registerForm.getUsername());
             newUser.setPasswordHash(registerForm.getPassword());
             newUser.setFullName(registerForm.getFullName());
+            newUser.setRole("user");
             
             userRepository.save(newUser);
             notifyService.addInfoMessage("Register successful");

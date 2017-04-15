@@ -43,6 +43,7 @@ public class UserServiceJpaImpl implements UserService
 	@Override
 	public boolean authenticate(String username, String password)
 	{
+		System.out.println("In authenticate");
 		User user = userRepo.findByUsername(username).get(0);
 		
 		if(user.getPasswordHash() == password)

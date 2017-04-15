@@ -13,9 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter 
 {
-	/*@Autowired
+	@Autowired
 	DataSource dataSource;
-	*/
+	
     @Override
     protected void configure(HttpSecurity http) throws Exception 
     {
@@ -36,11 +36,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
     	.usersByUsernameQuery("select * from users where username=?");
     } */
 
-    /* @Autowired
+  /*  @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
     {
-        auth.inMemoryAuthentication().withUser("username").password("username").roles("USER");
-    }*/
-    
-    
+        auth.jdbcAuthentication().dataSource(dataSource).withUser(getUserQuery());
+    }*/    
 }

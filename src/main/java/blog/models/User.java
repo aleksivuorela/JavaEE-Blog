@@ -28,9 +28,14 @@ public class User
 	@Column(length = 100, name = "full_name")
 	private String fullName;
 	
+	@Column(nullable = false, length = 20, name = "role")
+	private String role;
+
 	@OneToMany(mappedBy = "author")
 	private Set<Post> posts = new HashSet<>();
 	
+	public String getRole() { return role; }
+	public void setRole(String role) { this.role = role; }
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getUsername() { return username; }
