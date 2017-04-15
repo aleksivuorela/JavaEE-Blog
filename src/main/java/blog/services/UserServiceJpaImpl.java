@@ -43,15 +43,25 @@ public class UserServiceJpaImpl implements UserService
 	@Override
 	public boolean authenticate(String username, String password)
 	{
-		System.out.println("In authenticate");
-		User user = userRepo.findByUsername(username).get(0);
-		
-		if(user.getPasswordHash() == password)
-		{
-			return true;
-		}
-		else return false;
+		boolean result = false;
+		try		{
+			User user = userRepo.findByUsername(username);			
+			//System.out.println("Found username: " + user.getUsername() + ", found password: " + user.getPasswordHash());
+			//System.out.println("Given username: " + username + ", given password: " + password);
 			
+			if(user.getPasswordHash().equals(password))			{
+				System.out.println("Password match, returning TRUE");
+				result = true;
+			}			
+			else{
+				System.out.println("Password mismatch, returning FALSE");
+				result = false;
+			}
+		}
+		catch(Exception e)		{
+			System.out.println("No given user found");
+		}
 		
+		return result;
 	}
 }

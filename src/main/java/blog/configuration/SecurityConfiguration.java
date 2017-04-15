@@ -19,11 +19,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception 
     {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/", "/users/register", "/css/styles.css", "/js/blog-scripts.js" ).permitAll()
+        http
+        	.authorizeRequests()
+        		.antMatchers(HttpMethod.GET, "/", "/users/register", "/css/styles.css", "/js/blog-scripts.js" ).permitAll()
                 .antMatchers(HttpMethod.POST, "/users/register", "/users/login").permitAll()
-                .and()
-            .formLogin().loginPage("/users/login").permitAll()
                 .and()
             .logout().permitAll();
     }
