@@ -1,5 +1,8 @@
 package blog.controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,14 @@ public class PostsController
     
     @Autowired
     private NotificationService notifyService;
+	
+	@RequestMapping("/posts")
+	public String index(Model model) 
+	{
+		List<Post> allPosts = postService.findAll();
+		model.addAttribute("allPosts", allPosts);
+		return "posts/index";
+	}
       
     @RequestMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
