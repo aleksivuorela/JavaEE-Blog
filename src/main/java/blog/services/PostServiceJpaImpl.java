@@ -1,4 +1,4 @@
-package blog.services;
+	package blog.services;
 
 import blog.models.Post;
 import blog.repositories.PostRepository;
@@ -39,7 +39,7 @@ public class PostServiceJpaImpl implements PostService
 	public Post edit(Post post) {
 	return this.postRepo.save(post);
 	}
-	
+
 	@Override
 	public void deleteById(Long id) {
 	this.postRepo.delete(id);

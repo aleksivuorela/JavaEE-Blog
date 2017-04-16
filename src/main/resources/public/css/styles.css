@@ -79,6 +79,10 @@ ul#messages li.error {
     font-style: italic;
 }
 
+form {
+    display: inline-block;
+}
+
 #posts .content {
 	margin-top: 10px;
 }
