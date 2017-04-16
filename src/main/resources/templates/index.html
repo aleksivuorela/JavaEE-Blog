@@ -10,17 +10,17 @@
 	<div layout:fragment="content">
 		<aside class="recentPosts">
 			<h2>Recent Posts</h2>
-			<a href="#" th:each="p : ${latest5posts}" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
+			<a href="#" th:each="p : ${latest5posts}" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}">Post link</a>
 		</aside>	
 		<main id="posts">
 		    <article th:each="p : ${latest3posts}">
-		      <h2 class="title" th:text="${p.title}">Post Title</h2>
+		      <h2 class="title" th:text="${p.title}">Post title</h2>
 		      <div class="date">
 		        <i>Posted on</i>
-		        <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">22-May-2016</span>
+		        <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">Post date</span>
 		        <span th:if="${p.author}" th:remove="tag">
 		          <i>by</i>
-		          <span th:text="${p.author.fullName != null ? p.author.fullName : p.author.username}">Svetlin Nakov</span>
+		          <span th:text="${p.author.fullName != null ? p.author.fullName : p.author.username}">Post author</span>
 		        </span>
 		      </div>
 		      <p class="content" th:utext="${p.body}">Post content</p>

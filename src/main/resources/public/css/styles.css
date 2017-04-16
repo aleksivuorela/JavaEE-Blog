@@ -1,6 +1,6 @@
 .recentPosts {
   float: right;
-  width: 200px;
+  width: 300px;
   background: #CCC;
   padding: 15px;
   margin-left: 20px;
@@ -25,7 +25,7 @@
 
 body>header {
 	background: #eee;
-	padding: 5px;
+	padding: 10px;
 }
 
 body>header a {
@@ -51,9 +51,14 @@ body>footer {
 	margin-right: 10px;
 }
 
+ul#messages {
+    padding: 0;
+    list-style-type: none;
+}
+
 ul#messages li {
 	display: block;
-	width: 80%;
+	width: 100%;
 	margin: 5px auto;
 	text-align: center;
 	padding: 5px;
@@ -72,4 +77,8 @@ ul#messages li.error {
 .formError {
     color: red;
     font-style: italic;
+}
+
+#posts .content {
+	margin-top: 10px;
 }
