@@ -22,7 +22,7 @@
 			<a href="index.html" th:href="@{/}">Home</a>	
 			<a href="posts/index.html" th:href="@{/posts}">Posts</a>
 			<a href="posts/create.html" th:href="@{/posts/create}">Create Post</a>
-			<a href="users/index.html" th:href="@{/users}">Users</a>
+			<!-- <a href="users/index.html" th:href="@{/users}">Users</a> -->
 			<div id="logged-in-info">
 				<span th:if="${session.user != null}" th:text="${session.user}"></span>
 				<span th:if="${session.user == null}">

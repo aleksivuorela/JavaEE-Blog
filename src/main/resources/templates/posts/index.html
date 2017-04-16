@@ -22,10 +22,8 @@
 		        </span>
 		      </div>
 		      <p class="content" th:utext="${p.body}">Post content</p>
-		      <span th:if="${session.user != null}">
+		      <span th:if="${session.user == p.author.username}">
 					<a href="#" th:text="[Edit]" th:href="@{/posts/edit/{id}/(id=${p.id})}">Edit link</a>
-			  </span>
-		      <span th:if="${session.user != null}">
 					<a href="#" th:text="[Delete]" th:href="@{/posts/delete/{id}/(id=${p.id})}">Delete link</a>
 			  </span>
 			  <hr />

@@ -97,6 +97,21 @@ public class PostsController
             notifyService.addErrorMessage("Cannot find post #" + id);
             return "redirect:/posts";
         }
+        
+        HttpSession session = request.getSession(false);
+        if(session == null || session.getAttribute("user") == null)
+        {
+        	notifyService.addErrorMessage("Login to delete posts");
+            return "redirect:/posts";
+        }
+        String user = session.getAttribute("user").toString();
+        if(!user.equals(post.getAuthor().getUsername()))
+        {
+        	notifyService.addErrorMessage("Cannot delete posts written by other authors");
+            return "redirect:/posts";
+        }
+        
+        notifyService.addInfoMessage("Post deleted");
         postService.deleteById(id);
         return "redirect:/posts";
     }
