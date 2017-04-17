@@ -98,6 +98,7 @@ public class PostsController
             return "redirect:/posts";
         }
         
+        // Ei poisteta muiden posteja
         HttpSession session = request.getSession(false);
         if(session == null || session.getAttribute("user") == null)
         {
@@ -140,6 +141,21 @@ public class PostsController
             notifyService.addErrorMessage("Cannot find post #" + id);
             return "redirect:/posts";
         }
+        
+        // Ei editoida muiden posteja
+        HttpSession session = request.getSession(false);
+        if(session == null || session.getAttribute("user") == null)
+        {
+        	notifyService.addErrorMessage("Login to edit posts");
+            return "redirect:/posts";
+        }        
+        String user = session.getAttribute("user").toString();
+        if(!user.equals(post.getAuthor().getUsername()))
+        {
+        	notifyService.addErrorMessage("Cannot edit posts written by other authors");
+            return "redirect:/posts";
+        }
+        
         post.setTitle(HtmlUtils.htmlEscape(title));
         post.setBody(HtmlUtils.htmlEscape(content));
         postService.edit(post);
