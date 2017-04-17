@@ -25,19 +25,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers(HttpMethod.POST, "/users/register", "/users/login").permitAll()
                 .and()
             .logout().permitAll();
-    }
-    
-  /*  @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception 
-    {
-    	auth.
-    	auth.jdbcAuthentication().dataSource(dataSource)
-    	.usersByUsernameQuery("select * from users where username=?");
-    } */
-
-  /*  @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
-    {
-        auth.jdbcAuthentication().dataSource(dataSource).withUser(getUserQuery());
-    }*/    
+    } 
 }

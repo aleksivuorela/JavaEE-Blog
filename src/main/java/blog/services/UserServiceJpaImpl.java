@@ -4,6 +4,7 @@ import blog.models.User;
 import blog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +55,7 @@ public class UserServiceJpaImpl implements UserService
 			//System.out.println("Found username: " + user.getUsername() + ", found password: " + user.getPasswordHash());
 			//System.out.println("Given username: " + username + ", given password: " + password);
 			
-			if(user.getPasswordHash().equals(password))			{
+			if(BCrypt.checkpw(password, user.getPasswordHash())){
 				System.out.println("Password match, returning TRUE");
 				result = true;
 			}			

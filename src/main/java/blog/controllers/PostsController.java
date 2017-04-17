@@ -140,8 +140,8 @@ public class PostsController
             notifyService.addErrorMessage("Cannot find post #" + id);
             return "redirect:/posts";
         }
-        post.setTitle(title);
-        post.setBody(content);
+        post.setTitle(HtmlUtils.htmlEscape(title));
+        post.setBody(HtmlUtils.htmlEscape(content));
         postService.edit(post);
         return "redirect:/posts/view/" + id;
     }

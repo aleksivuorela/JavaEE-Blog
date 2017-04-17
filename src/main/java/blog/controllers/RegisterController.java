@@ -6,6 +6,7 @@ import blog.repositories.UserRepository;
 import blog.services.NotificationService;
 import blog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class RegisterController 
 {
+	private final static int workload = 10;
+	
     @Autowired
     private UserService userService;
     
@@ -27,7 +30,6 @@ public class RegisterController
 
     @RequestMapping("/users/register")
     public String login(RegisterForm registerForm) {
-    	System.out.println("Recieved register get");
         return "users/register";
     }
 
@@ -42,15 +44,13 @@ public class RegisterController
         try
         {
             User newUser = new User();        
-            newUser.setUsername(registerForm.getUsername());
-            newUser.setPasswordHash(registerForm.getPassword());
+            newUser.setUsername(registerForm.getUsername());            
+            newUser.setPasswordHash(hashPassword(registerForm.getPassword()));
             newUser.setFullName(registerForm.getFullName());
             newUser.setRole("user");
-            
+                        
             userRepository.save(newUser);
             notifyService.addInfoMessage("Register successful");
-            
-            
         }
         catch(Exception e)
         {
@@ -59,4 +59,11 @@ public class RegisterController
         
         return "redirect:/";
     }
+    
+    public static String hashPassword(String password_plaintext) {
+		String salt = BCrypt.gensalt(workload);
+		String hashed_password = BCrypt.hashpw(password_plaintext, salt);
+
+		return(hashed_password);
+	}
 }
